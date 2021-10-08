@@ -1,18 +1,25 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.kawamataryo.intellijpluginsandbox</id>
-    <name>intellij-plugin-sandbox</name>
+    <name>GithubCopy</name>
     <vendor>kawamataryo</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.kawamataryo.intellijpluginsandbox.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.kawamataryo.intellijpluginsandbox.services.MyProjectService"/>
+        <notificationGroup id="CopyRemoteFileUrl Notification Group" displayType="TOOL_WINDOW"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.kawamataryo.intellijpluginsandbox.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+    <actions>
+      <action id="com.github.kawamataryo.intellijpluginsandbox.CopyRemoteFileUrl"
+        class="com.github.kawamataryo.intellijpluginsandbox.CopyRemoteCodeLink"
+        text="Copy Remote Code Link"
+        description="Copy the code link of the GitHub Repository to the clipboard"
+        icon="AllIcons.Actions.Copy"
+      >
+        <keyboard-shortcut keymap="$default" first-keystroke="control shift C"/>
+        <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      </action>
+    </actions>
 </idea-plugin>
