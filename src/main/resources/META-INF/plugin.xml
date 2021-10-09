@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.kawamataryo.intellijpluginsandbox</id>
-    <name>GithubCopy</name>
+    <id>com.github.kawamataryo.copygithublink</id>
+    <name>CopyGitHubLink</name>
     <vendor>kawamataryo</vendor>
 
     <depends>com.intellij.modules.platform</depends>
@@ -12,14 +12,28 @@
     </extensions>
 
     <actions>
-      <action id="com.github.kawamataryo.intellijpluginsandbox.CopyRemoteFileUrl"
-        class="com.github.kawamataryo.intellijpluginsandbox.CopyRemoteCodeLink"
-        text="Copy Remote Code Link"
-        description="Copy the code link of the GitHub Repository to the clipboard"
-        icon="AllIcons.Actions.Copy"
+      <!-- copy permalink -->
+      <action id="com.github.kawamataryo.copygithublink.CopyPermalink"
+        class="com.github.kawamataryo.copygithublink.CopyPermalink"
+        text="Copy PermaLink"
+        description="Copy a permalink of the GitHub to the clipboard"
+        icon="CopyGitHubLinkIcons.github"
       >
-        <keyboard-shortcut keymap="$default" first-keystroke="control shift C"/>
-        <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        <keyboard-shortcut keymap="$default" first-keystroke="control alt C"/>
+        <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt C"/>
+        <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      </action>
+
+      <!-- copy permalink as Markdown -->
+      <action id="com.github.kawamataryo.copygithublink.CopyPermalinkAsMarkdown"
+        class="com.github.kawamataryo.copygithublink.CopyPermalinkAsMarkdown"
+        text="Copy PermaLink as MD"
+        description="Copy a permalink as Markdown of the GitHub to the clipboard"
+        icon="CopyGitHubLinkIcons.github"
+      >
+        <keyboard-shortcut keymap="$default" first-keystroke="control alt M"/>
+        <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt M"/>
+        <add-to-group group-id="EditorPopupMenu" anchor="last"/>
       </action>
     </actions>
 </idea-plugin>

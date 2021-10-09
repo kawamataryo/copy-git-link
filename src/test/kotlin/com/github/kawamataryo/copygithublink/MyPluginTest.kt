@@ -1,4 +1,4 @@
-package com.github.kawamataryo.intellijpluginsandbox
+package com.github.kawamataryo.copygithublink
 
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.psi.xml.XmlFile
