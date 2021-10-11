@@ -1,1 +1,1 @@
-rootProject.name = "intellij-plugin-sandbox"
+rootProject.name = "copy-git-link"
