@@ -19,7 +19,6 @@ class CopyPermalinkAsMarkdown : AnAction() {
             val markdownLink = "[$linkText]($permalink)"
 
             copyToClipboard(markdownLink)
-            gitLink.caret.removeSelection()
 
             showNotification(
                 gitLink.project,

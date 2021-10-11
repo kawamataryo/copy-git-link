@@ -17,7 +17,6 @@ class CopyPermalink : AnAction() {
 
             // Copy to clipboard
             copyToClipboard(permalink)
-            gitLink.caret.removeSelection()
 
             showNotification(
                 gitLink.project,
