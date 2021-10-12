@@ -15,6 +15,12 @@ Works with:
 - GitLab
 - Bitbucket
 
+## Usage
+
+Select the code you want to copy the permalink to, and click "Copy permalink" from the context menu. The permalink will be saved to the clipboard.
+
+And, Click "Copy permalink as MD" to copy the link in Markdown format.
+
 <!-- Plugin description end -->
 
 ## Installation
