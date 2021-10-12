@@ -7,7 +7,7 @@ import java.awt.datatransfer.StringSelection
 
 fun showNotification(project: Project, type: NotificationType, title: String, content: String) {
     NotificationGroupManager.getInstance()
-        .getNotificationGroup("CopyRemoteFileUrl Notification Group")
+        .getNotificationGroup("CopyGitlink Notification Group")
         .createNotification(title, content, type)
         .setListener(NotificationListener.URL_OPENING_LISTENER)
         .notify(project);

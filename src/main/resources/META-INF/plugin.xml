@@ -8,7 +8,7 @@
     <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <notificationGroup id="CopyRemoteFileUrl Notification Group" displayType="TOOL_WINDOW"/>
+        <notificationGroup id="CopyGitlink Notification Group" displayType="TOOL_WINDOW"/>
     </extensions>
 
     <actions>
