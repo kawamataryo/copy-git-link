@@ -15,6 +15,9 @@ Works with:
 - GitLab
 - Bitbucket
 
+https://user-images.githubusercontent.com/11070996/136949256-3427fa29-45d4-4d9d-9f0b-1f0b8836c6de.mp4
+
+
 ## Usage
 
 Select the code you want to copy the permalink to, and click "Copy permalink" from the context menu. The permalink will be saved to the clipboard.
