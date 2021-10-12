@@ -1,6 +1,7 @@
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.editor.Caret
+import com.intellij.openapi.editor.Editor
 import git4idea.repo.GitRepositoryManager
 
 class GitLink(actionEvent: AnActionEvent) {
@@ -10,14 +11,17 @@ class GitLink(actionEvent: AnActionEvent) {
     private val virtualFile = actionEvent.getRequiredData(CommonDataKeys.VIRTUAL_FILE)
     private val repo =
         GitRepositoryManager.getInstance(project).getRepositoryForFileQuick(virtualFile)
+    private val editor: Editor =
+        actionEvent.getRequiredData(CommonDataKeys.EDITOR)
 
     val hasRepository = repo != null
 
     val linePath: String
         get() {
-            val start = caret.selectionStartPosition.getLine() + 1
-            val end =
-                if (caret.selectionEndPosition.leansRight) caret.selectionEndPosition.line + 1 else caret.selectionEndPosition.line
+            val logicalStartPosition = editor.visualToLogicalPosition(caret.selectionStartPosition)
+            val logicalEndPosition = editor.visualToLogicalPosition(caret.selectionEndPosition)
+            val start = logicalStartPosition.line + 1
+            val end = if(logicalEndPosition.column == 0 && logicalStartPosition.line != logicalEndPosition.line) logicalEndPosition.line else logicalEndPosition.line + 1
             return if (start == end) "#L$start" else "#L$start-L$end"
         }
 
