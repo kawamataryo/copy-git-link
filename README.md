@@ -3,8 +3,8 @@
 # Copy Git Link
 
 ![Build](https://github.com/kawamataryo/copy-git-link/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/17756-copy-git-link.svg)](https://plugins.jetbrains.com/plugin/17756-copy-git-link)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/17756-copy-git-link.svg)](https://plugins.jetbrains.com/plugin/17756-copy-git-link)
 
 <!-- Plugin description -->
 Provides a shortcut to copy permalink in their online Git repositories from inside IDE.
