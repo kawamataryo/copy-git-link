@@ -38,8 +38,7 @@ class GitLink(actionEvent: AnActionEvent) {
     val relativePath: String
         get() {
             val path = virtualFile.path
-            val basePath = project.basePath ?: ""
-            return path.replace(basePath, "")
+            return path.replace(repo.toString(), "")
         }
 
     val permalink: String
