@@ -29,10 +29,10 @@ class GitLink(actionEvent: AnActionEvent) {
         get() {
             val url = repo?.remotes?.first()?.firstUrl ?: ""
             val result =
-                Regex(".*(github|gitlab|bitbucket)\\.(com|org).([^/]+/[^/]+).*\\.git").matchEntire(
+                Regex(".*(?:@|\/\/)(.[^:\/]*).([^\.]+)\.git").matchEntire(
                     url
                 )
-            return result?.groupValues?.get(3) ?: ""
+            return result?.groupValues?.get(1) + "/" + result?.groupValues?.get(2) ?: ""
         }
 
     val relativePath: String
@@ -43,7 +43,7 @@ class GitLink(actionEvent: AnActionEvent) {
 
     val permalink: String
         get() {
-            return "https://github.com/$repositoryPath/blob/${repo?.currentRevision}$relativePath$linePath"
+            return "https://$repositoryPath/blob/${repo?.currentRevision}$relativePath$linePath"
         }
 }
 
