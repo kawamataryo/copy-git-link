@@ -18,12 +18,17 @@ fun copyToClipboard(text: String) {
 }
 
 fun truncateText(text: String, maxLength: Int): String {
-    if(text.length < maxLength) {
+    if (text.length < maxLength) {
         return text
     }
     return "${text.substring(0, maxLength)}..."
 }
 
-fun getPermalink(repositoryPath: String, revision: String, filePath: String, linePath: String): String {
+fun getPermalink(
+    repositoryPath: String,
+    revision: String,
+    filePath: String,
+    linePath: String
+): String {
     return "https://github.com/$repositoryPath/blob/$revision$filePath$linePath"
 }
