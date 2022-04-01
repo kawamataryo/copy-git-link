@@ -8,7 +8,8 @@ import java.awt.datatransfer.StringSelection
 fun showNotification(project: Project, type: NotificationType, title: String, content: String) {
     NotificationGroupManager.getInstance()
         .getNotificationGroup("CopyGitlink Notification Group")
-        .createNotification(title, content, type)
+        .createNotification(content, type)
+        .setTitle(title)
         .setListener(NotificationListener.URL_OPENING_LISTENER)
         .notify(project);
 }
