@@ -2,6 +2,8 @@
 
 # Copy Git Link
 
-## 0.3.4
-### Bug Fix
+## [Unreleased]
+
+## [0.3.4] - 2022-04-25
+### Fixed
 - wrong URL on Windows by @mallowlabs
