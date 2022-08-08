@@ -2,6 +2,6 @@
 
 # Copy Git Link
 
-## 0.34
+## 0.3.4
 ### Bug Fix
 - wrong URL on Windows by @mallowlabs
