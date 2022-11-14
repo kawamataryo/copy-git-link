@@ -2,6 +2,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.editor.Caret
 import com.intellij.openapi.editor.Editor
+import com.intellij.openapi.util.ProperTextRange
 import git4idea.repo.GitRepositoryManager
 
 class GitLink(actionEvent: AnActionEvent) {
@@ -44,6 +45,16 @@ class GitLink(actionEvent: AnActionEvent) {
     val permalink: String
         get() {
             return "https://$repositoryPath/blob/${repo?.currentRevision}$relativePath$linePath"
+        }
+
+    val source:String
+        get(){
+            val logicalStartPosition = editor.visualToLogicalPosition(caret.selectionStartPosition)
+            val logicalEndPosition = editor.visualToLogicalPosition(caret.selectionEndPosition)
+
+            val startOffset = editor.document.getLineStartOffset(logicalStartPosition.line)
+            val endOffset = editor.document.getLineEndOffset(logicalEndPosition.line)
+            return editor.document.getText(ProperTextRange(startOffset, endOffset))
         }
 }
 

@@ -35,5 +35,17 @@
         <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt M"/>
         <add-to-group group-id="EditorPopupMenu" anchor="last"/>
       </action>
+
+        <!-- copy permalink as Markdown -->
+        <action id="com.github.kawamataryo.copygitlink.CopyAsMarkdownWithCode"
+                class="com.github.kawamataryo.copygitlink.CopyAsMarkdownWithCode"
+                text="Copy Permalink as MD with Code"
+                description="Copy a permalink as Markdown of the GitHub With Code to the clipboard"
+                icon="CopyGitHubLinkIcons.CopyGitLink"
+        >
+            <keyboard-shortcut keymap="$default" first-keystroke="control alt L"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt L"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
     </actions>
 </idea-plugin>
