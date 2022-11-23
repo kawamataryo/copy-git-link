@@ -30,7 +30,7 @@ class CopyAsMarkdownWithCode : AnAction() {
 
 
             val content = """$markdownLink
-                |```${vf.name.substring(vf.name.lastIndex)}
+                |```${vf.name.split(".").last()}
                 |$source
                 |```
             """.trimMargin()
