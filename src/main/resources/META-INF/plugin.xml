@@ -12,28 +12,52 @@
     </extensions>
 
     <actions>
-      <!-- copy permalink -->
-      <action id="com.github.kawamataryo.copygitlink.CopyPermalink"
-        class="com.github.kawamataryo.copygitlink.CopyPermalink"
-        text="Copy Permalink"
-        description="Copy a permalink of the GitHub to the clipboard"
-        icon="CopyGitHubLinkIcons.CopyGitLink"
-      >
-        <keyboard-shortcut keymap="$default" first-keystroke="control alt C"/>
-        <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt C"/>
-        <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-      </action>
+        <!-- copy permalink -->
+        <action id="com.github.kawamataryo.copygitlink.CopyPermalink"
+                class="com.github.kawamataryo.copygitlink.CopyPermalink"
+                text="Copy Permalink"
+                description="Copy a permalink of the GitHub to the clipboard"
+                icon="CopyGitHubLinkIcons.CopyGitLink"
+        >
+            <keyboard-shortcut keymap="$default" first-keystroke="control alt C"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt C"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
 
-      <!-- copy permalink as Markdown -->
-      <action id="com.github.kawamataryo.copygitlink.CopyPermalinkAsMarkdown"
-        class="com.github.kawamataryo.copygitlink.CopyPermalinkAsMarkdown"
-        text="Copy Permalink as MD"
-        description="Copy a permalink as Markdown of the GitHub to the clipboard"
-        icon="CopyGitHubLinkIcons.CopyGitLink"
-      >
-        <keyboard-shortcut keymap="$default" first-keystroke="control alt M"/>
-        <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt M"/>
-        <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-      </action>
+        <action id="com.github.kawamataryo.copygitlink.CopyPermalinkAsHtml"
+                class="com.github.kawamataryo.copygitlink.CopyPermalinkAsHtml"
+                text="Copy Permalink as Html"
+                description="Copy a permalink as HTML to the clipboard"
+                icon="CopyGitHubLinkIcons.CopyGitLink"
+        >
+            <keyboard-shortcut keymap="$default" first-keystroke="control alt L"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt H"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+
+        <!-- copy permalink as Markdown -->
+        <action id="com.github.kawamataryo.copygitlink.CopyPermalinkAsMarkdown"
+                class="com.github.kawamataryo.copygitlink.CopyPermalinkAsMarkdown"
+                text="Copy Permalink as MD"
+                description="Copy a permalink as Markdown of the GitHub to the clipboard"
+                icon="CopyGitHubLinkIcons.CopyGitLink"
+        >
+            <keyboard-shortcut keymap="$default" first-keystroke="control alt M"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt M"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+
+
+        <!-- copy permalink as Markdown -->
+        <action id="com.github.kawamataryo.copygitlink.CopyAsMarkdownWithCode"
+                class="com.github.kawamataryo.copygitlink.CopyAsMarkdownWithCode"
+                text="Copy Permalink as MD with Code"
+                description="Copy a permalink as Markdown of the GitHub With Code to the clipboard"
+                icon="CopyGitHubLinkIcons.CopyGitLink"
+        >
+            <keyboard-shortcut keymap="$default" first-keystroke="control alt L"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt L"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
     </actions>
 </idea-plugin>
