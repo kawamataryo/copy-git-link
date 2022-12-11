@@ -46,6 +46,10 @@ class GitLink(actionEvent: AnActionEvent) {
         get() {
             return "https://$repositoryPath/blob/${repo?.currentRevision}$relativePath$linePath"
         }
+    val branchLink: String
+        get() {
+            return "https://$repositoryPath/blob/${repo?.currentBranch}$relativePath$linePath"
+        }
 
     val source:String
         get(){
