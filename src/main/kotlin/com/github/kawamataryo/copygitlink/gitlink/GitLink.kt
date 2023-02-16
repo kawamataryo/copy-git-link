@@ -30,7 +30,7 @@ class GitLink(actionEvent: AnActionEvent) {
         get() {
             val url = repo?.remotes?.first()?.firstUrl ?: ""
             val result =
-                Regex(".*(?:@|\\/\\/)(.[^:\\/]*)(?::[0-9]{1,4}).([^\\.]+)\\.git").matchEntire(
+                Regex(".*(?:@|\\/\\/)(.[^:\\/]*)(?::[0-9]{1,4})?.([^\\.]+)\\.git").matchEntire(
                     url
                 )
             return result?.groupValues?.get(1) + "/" + result?.groupValues?.get(2) ?: ""
