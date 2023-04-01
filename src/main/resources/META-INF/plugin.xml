@@ -38,14 +38,14 @@
 
         <!-- copy branch link -->
         <action id="com.github.kawamataryo.copygitlink.CopyBranchLink"
-          class="com.github.kawamataryo.copygitlink.CopyBranchLink"
-          text="Copy Branch Link"
-          description="Copy a branch link of the GitHub to the clipboard"
-          icon="CopyGitHubLinkIcons.CopyGitLink"
+                class="com.github.kawamataryo.copygitlink.CopyBranchLink"
+                text="Copy Branch Link"
+                description="Copy a branch link of the GitHub to the clipboard"
+                icon="CopyGitHubLinkIcons.CopyGitLink"
         >
-          <keyboard-shortcut keymap="$default" first-keystroke="control alt B"/>
-          <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt B"/>
-          <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="control alt B"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control alt B"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
 
 
