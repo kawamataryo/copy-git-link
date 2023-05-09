@@ -4,6 +4,8 @@ import com.intellij.openapi.editor.Caret
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.util.ProperTextRange
 import git4idea.repo.GitRepositoryManager
+import git4idea.GitUtil
+
 
 class GitLink(actionEvent: AnActionEvent) {
     val project = actionEvent.getRequiredData(CommonDataKeys.PROJECT)
@@ -29,11 +31,7 @@ class GitLink(actionEvent: AnActionEvent) {
     val repositoryPath: String
         get() {
             val url = repo?.remotes?.first()?.firstUrl ?: ""
-            val result =
-                Regex(".*(?:@|\\/\\/)(.[^:\\/]*)(?::[0-9]{1,4})?.([^\\.]+)\\.git").matchEntire(
-                    url
-                )
-            return result?.groupValues?.get(1) + "/" + result?.groupValues?.get(2) ?: ""
+            return getRepositoryPathFromRemoteUrl(url)
         }
 
     val relativePath: String

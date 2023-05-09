@@ -33,3 +33,13 @@ fun getPermalink(
 ): String {
     return "https://github.com/$repositoryPath/blob/$revision$filePath$linePath"
 }
+
+fun getRepositoryPathFromRemoteUrl(
+    remoteUrl: String,
+): String {
+    val result =
+        Regex(".*(?:@|\\/\\/)(.[^:\\/]*)(?::[0-9]{1,4})?.([^\\.]+)(\\.git)?\$").matchEntire(
+            remoteUrl
+        )
+    return result?.groupValues?.get(1) + "/" + result?.groupValues?.get(2) ?: ""
+}
