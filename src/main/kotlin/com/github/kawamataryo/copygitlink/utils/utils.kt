@@ -38,8 +38,8 @@ fun getRepositoryPathFromRemoteUrl(
     remoteUrl: String,
 ): String {
     val result =
-        Regex(".*(?:@|\\/\\/)(.[^:\\/]*)(?::[0-9]{1,4})?.([^\\.]+)(\\.git)?\$").matchEntire(
+        Regex(".*(?:@|//)(.[^:/]*)(:?:[0-9]{1,4})?.([^.]+)(\\.git)?\$").matchEntire(
             remoteUrl
         )
-    return result?.groupValues?.get(1) + "/" + result?.groupValues?.get(2) ?: ""
+    return result?.groupValues?.get(1) + result?.groupValues?.get(2) + "/" + result?.groupValues?.get(3) ?: ""
 }
