@@ -18,7 +18,7 @@ class UtilsKtTest {
         "ssh://git@github.com:user/repo.git, github.com/user/repo",
         "git://github.com/user/repo.git, github.com/user/repo",
         "https://github.com/YandexClassifieds/projectname, github.com/YandexClassifieds/projectname",
-        "https://gitlab.self-hosted.com:8443/projgroup/projectname, gitlab.self-hosted.com:8443/projgroup/projectname",
+        "https://gitlab.self-hosted.com:8443/projgroup/projectname, gitlab.self-hosted.com/projgroup/projectname",
     )
     fun testGetRepositoryPathFromRemoteUrl(remoteUrl: String, expectedPath: String) {
         val actualPath = getRepositoryPathFromRemoteUrl(remoteUrl)
