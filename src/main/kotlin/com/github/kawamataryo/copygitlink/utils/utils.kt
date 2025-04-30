@@ -25,15 +25,6 @@ fun truncateText(text: String, maxLength: Int): String {
     return "${text.substring(0, maxLength)}..."
 }
 
-fun getPermalink(
-    repositoryPath: String,
-    revision: String,
-    filePath: String,
-    linePath: String
-): String {
-    return "https://github.com/$repositoryPath/blob/$revision$filePath$linePath"
-}
-
 fun getRepositoryPathFromRemoteUrl(
     remoteUrl: String,
 ): String {
