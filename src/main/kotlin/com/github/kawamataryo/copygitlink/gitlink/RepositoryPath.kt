@@ -13,6 +13,6 @@ fun getRepositoryPathFromRemoteUrl(remoteUrl: String): String {
     return if (result != null) {
         result.groupValues[1] + "/" + result.groupValues[3]
     } else {
-        ""
+        throw IllegalArgumentException("Failed to parse remote URL: $remoteUrl")
     }
 }
