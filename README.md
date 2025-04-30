@@ -43,3 +43,27 @@ And, Click "Copy permalink as MD" to copy the link in Markdown format.
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
+
+## Development
+
+To build the plugin:
+
+```sh
+./gradlew build
+```
+
+This will download gradle, including java, if necessary.
+
+### Run locally built plugin
+
+Use the Gradle IntelliJ Plugin’s runIde task to launch a sandboxed IntelliJ IDEA with your plugin installed:
+
+```sh
+./gradlew runIde
+```
+
+### Run tests
+
+```sh
+./gradlew test
+```
