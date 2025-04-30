@@ -1,11 +1,10 @@
-package com.github.kawamataryo.copygitlink.utils
+package com.github.kawamataryo.copygitlink.gitlink
 
-import getRepositoryPathFromRemoteUrl
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-class UtilsKtTest {
+class RepositoryPathUtilsTest {
 
     @ParameterizedTest
     @CsvSource(
@@ -23,8 +22,7 @@ class UtilsKtTest {
         "https://org@dev.azure.com/org/project/_git/repo, dev.azure.com/org/project/_git/repo",
         "git@ssh.dev.azure.com:v3/org/project/repo, ssh.dev.azure.com/v3/org/project/repo"
     )
-    fun testGetRepositoryPathFromRemoteUrl(remoteUrl: String, expectedPath: String) {
-        val actualPath = getRepositoryPathFromRemoteUrl(remoteUrl)
-        assertEquals(expectedPath, actualPath)
+    fun testGetRepositoryPathFromRemoteUrl(remoteUrl: String, expected: String) {
+        assertEquals(expected, getRepositoryPathFromRemoteUrl(remoteUrl))
     }
 }

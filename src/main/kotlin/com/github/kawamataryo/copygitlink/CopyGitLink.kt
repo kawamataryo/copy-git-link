@@ -1,12 +1,12 @@
 package com.github.kawamataryo.copygitlink
 
-import GitLink
+import com.github.kawamataryo.copygitlink.gitlink.GitLink
+import com.github.kawamataryo.copygitlink.gitlink.copyToClipboard
+import com.github.kawamataryo.copygitlink.gitlink.showNotification
+import com.github.kawamataryo.copygitlink.gitlink.truncateText
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import copyToClipboard
-import showNotification
-import truncateText
 
 class CopyPermalink : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {

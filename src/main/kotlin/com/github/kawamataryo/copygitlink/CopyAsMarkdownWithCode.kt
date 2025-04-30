@@ -1,6 +1,9 @@
 package com.github.kawamataryo.copygitlink
 
-import GitLink
+import com.github.kawamataryo.copygitlink.gitlink.GitLink
+import com.github.kawamataryo.copygitlink.gitlink.copyToClipboard
+import com.github.kawamataryo.copygitlink.gitlink.showNotification
+import com.github.kawamataryo.copygitlink.gitlink.truncateText
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -9,10 +12,6 @@ import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiFile
-import copyToClipboard
-import showNotification
-import truncateText
-
 
 class CopyAsMarkdownWithCode : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
@@ -22,12 +21,9 @@ class CopyAsMarkdownWithCode : AnAction() {
             val permalink = gitLink.permalink
             val linkText = gitLink.relativePath + gitLink.linePath
             val markdownLink = "[$linkText]($permalink)"
-            val source = gitLink.source;
-            val editor: Editor =
-                e.getRequiredData(CommonDataKeys.EDITOR)
+            val source = gitLink.source
 
             var vf:VirtualFile = e.getRequiredData(CommonDataKeys.VIRTUAL_FILE)
-
 
             val content = """$markdownLink
                 |```${vf.name.split(".").last()}
