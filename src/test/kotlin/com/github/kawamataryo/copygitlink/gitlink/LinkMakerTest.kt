@@ -117,7 +117,7 @@ class LinkMakerTest {
         val logicalEndPosition = LogicalPosition(3, 5)
         val revision = "abcdef123456"
         val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, revision = revision)
-        assertEquals("https://dev.azure.com/organization/project/_git/repository/blob/abcdef123456/src/AzureMain.kt#L4", linkMaker.permalink)
+        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FAzureMain.kt&version=GCabcdef123456&_a=contents", linkMaker.permalink)
     }
 
     @Test
@@ -129,7 +129,7 @@ class LinkMakerTest {
         val logicalEndPosition = LogicalPosition(7, 0)
         val branch = "feature/new-feature"
         val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, branch = branch)
-        assertEquals("https://dev.azure.com/organization/project/_git/repository/blob/feature/new-feature/src/AzureMain.kt#L8", linkMaker.branchLink)
+        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FAzureMain.kt&version=GBfeature%2Fnew-feature&_a=contents", linkMaker.branchLink)
     }
 
     @Test
@@ -141,6 +141,6 @@ class LinkMakerTest {
         val logicalEndPosition = LogicalPosition(3, 5)
         val revision = "abcdef123456"
         val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, revision = revision)
-        assertEquals("https://dev.azure.com/v3/organization/project/repository/blob/abcdef123456/src/AzureMain.kt#L4", linkMaker.permalink)
+        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FAzureMain.kt&version=GCabcdef123456&_a=contents", linkMaker.permalink)
     }
 }
