@@ -42,11 +42,11 @@ class GitLink(actionEvent: AnActionEvent) {
 
     val permalink: String
         get() {
-            return "https://$repositoryPath/blob/${repo?.currentRevision}$relativePath$linePath"
+            return makeUrl(repo?.currentRevision ?: "")
         }
     val branchLink: String
         get() {
-            return "https://$repositoryPath/blob/${repo?.currentBranch}$relativePath$linePath"
+            return makeUrl(repo?.currentBranch ?: "")
         }
 
     val source:String
@@ -58,6 +58,8 @@ class GitLink(actionEvent: AnActionEvent) {
             val endOffset = editor.document.getLineEndOffset(logicalEndPosition.line)
             return editor.document.getText(ProperTextRange(startOffset, endOffset))
         }
+
+    private fun makeUrl(ref: String): String {
+        return "https://$repositoryPath/blob/$ref$relativePath$linePath"
+    }
 }
-
-
