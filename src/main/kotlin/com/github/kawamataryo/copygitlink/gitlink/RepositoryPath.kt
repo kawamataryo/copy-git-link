@@ -13,10 +13,11 @@ fun getRepositoryPathFromRemoteUrl(remoteUrl: String): String {
     if (remoteUrl.contains("dev.azure.com") || remoteUrl.contains("ssh.dev.azure.com")) {
         if (remoteUrl.startsWith("git@ssh.dev.azure.com:")) {
             // SSH Azure DevOps format: git@ssh.dev.azure.com:v3/org/project/repo
+            // Need to strip "ssh." from the domain and return "dev.azure.com/..."
             val pattern = Regex("git@ssh\\.dev\\.azure\\.com:(.+)")
             val match = pattern.find(remoteUrl)
             if (match != null) {
-                return "ssh.dev.azure.com/" + match.groupValues[1]
+                return "dev.azure.com/" + match.groupValues[1]
             }
         } else if (remoteUrl.contains("dev.azure.com")) {
             // HTTPS Azure DevOps format: https://dev.azure.com/org/project/_git/repo

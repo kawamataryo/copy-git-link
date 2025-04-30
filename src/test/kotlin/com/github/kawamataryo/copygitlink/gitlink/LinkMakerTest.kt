@@ -141,6 +141,6 @@ class LinkMakerTest {
         val logicalEndPosition = LogicalPosition(3, 5)
         val revision = "abcdef123456"
         val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, revision = revision)
-        assertEquals("https://ssh.dev.azure.com/v3/organization/project/repository/blob/abcdef123456/src/AzureMain.kt#L4", linkMaker.permalink)
+        assertEquals("https://dev.azure.com/v3/organization/project/repository/blob/abcdef123456/src/AzureMain.kt#L4", linkMaker.permalink)
     }
 }

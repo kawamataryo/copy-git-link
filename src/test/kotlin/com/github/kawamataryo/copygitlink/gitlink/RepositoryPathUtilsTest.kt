@@ -20,8 +20,8 @@ class RepositoryPathUtilsTest {
         "https://gitlab.self-hosted.com:8443/projgroup/projectname, gitlab.self-hosted.com/projgroup/projectname",
         "https://dev.azure.com/org/project/_git/repo, dev.azure.com/org/project/_git/repo",
         "https://org@dev.azure.com/org/project/_git/repo, dev.azure.com/org/project/_git/repo",
-        "git@ssh.dev.azure.com:v3/org/project/repo, ssh.dev.azure.com/v3/org/project/repo",
-        "git@ssh.dev.azure.com:v3/org/project/repo.with.dots, ssh.dev.azure.com/v3/org/project/repo.with.dots"
+        "git@ssh.dev.azure.com:v3/org/project/repo, dev.azure.com/v3/org/project/repo",
+        "git@ssh.dev.azure.com:v3/org/project/repo.with.dots, dev.azure.com/v3/org/project/repo.with.dots"
     )
     fun testGetRepositoryPathFromRemoteUrl(remoteUrl: String, expected: String) {
         assertEquals(expected, getRepositoryPathFromRemoteUrl(remoteUrl))
