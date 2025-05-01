@@ -117,7 +117,7 @@ class LinkMakerTest {
         val logicalEndPosition = LogicalPosition(3, 5)
         val revision = "abcdef123456"
         val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, revision = revision)
-        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FAzureMain.kt&version=GCabcdef123456&_a=contents", linkMaker.permalink)
+        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FAzureMain.kt&version=GCabcdef123456&line=4&lineEnd=4&lineStartColumn=1&lineEndColumn=6&lineStyle=plain&_a=contents", linkMaker.permalink)
     }
 
     @Test
@@ -129,7 +129,7 @@ class LinkMakerTest {
         val logicalEndPosition = LogicalPosition(7, 0)
         val branch = "feature/new-feature"
         val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, branch = branch)
-        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FAzureMain.kt&version=GBfeature%2Fnew-feature&_a=contents", linkMaker.branchLink)
+        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FAzureMain.kt&version=GBfeature%2Fnew-feature&line=8&lineEnd=9&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents", linkMaker.branchLink)
     }
 
     @Test
@@ -141,6 +141,56 @@ class LinkMakerTest {
         val logicalEndPosition = LogicalPosition(3, 5)
         val revision = "abcdef123456"
         val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, revision = revision)
-        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FAzureMain.kt&version=GCabcdef123456&_a=contents", linkMaker.permalink)
+        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FAzureMain.kt&version=GCabcdef123456&line=4&lineEnd=4&lineStartColumn=1&lineEndColumn=6&lineStyle=plain&_a=contents", linkMaker.permalink)
+    }
+
+    @Test
+    fun testAzureDevopsLineRange() {
+        val repoUrl = "https://dev.azure.com/organization/project/_git/repository"
+        val repoRoot = "/home/user/azureproject"
+        val filePath = "/home/user/azureproject/src/ProcessDtoQueueTrigger.cs"
+        val logicalStartPosition = LogicalPosition(64, 0) // 0-based, so line 65 in the URL
+        val logicalEndPosition = LogicalPosition(67, 0) // 0-based, so line 68 in the URL
+        val revision = "9742c242936569b815946ae38ab4df056b83944a"
+        val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, revision = revision)
+        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FProcessDtoQueueTrigger.cs&version=GC9742c242936569b815946ae38ab4df056b83944a&line=65&lineEnd=68&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents", linkMaker.permalink)
+    }
+
+    @Test
+    fun testAzureDevopsZeroLengthSelection() {
+        val repoUrl = "https://dev.azure.com/organization/project/_git/repository"
+        val repoRoot = "/home/user/azureproject"
+        val filePath = "/home/user/azureproject/src/ProcessDtoQueueTrigger.cs"
+        // Zero-length selection at line 42, column 0
+        val logicalStartPosition = LogicalPosition(42, 0)
+        val logicalEndPosition = LogicalPosition(42, 0)
+        val revision = "9742c242936569b815946ae38ab4df056b83944a"
+        val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, revision = revision)
+        // Should select the entire line 43 (0-based 42 + 1)
+        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FProcessDtoQueueTrigger.cs&version=GC9742c242936569b815946ae38ab4df056b83944a&line=43&lineEnd=44&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents", linkMaker.permalink)
+    }
+
+    @Test
+    fun testAzureDevopsMidLineSelection() {
+        val repoUrl = "https://dev.azure.com/organization/project/_git/repository"
+        val repoRoot = "/home/user/azureproject"
+        val filePath = "/home/user/azureproject/src/ProcessDtoQueueTrigger.cs"
+        val logicalStartPosition = LogicalPosition(42, 9)
+        val logicalEndPosition = LogicalPosition(42, 14)
+        val revision = "9742c242936569b815946ae38ab4df056b83944a"
+        val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, revision = revision)
+        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FProcessDtoQueueTrigger.cs&version=GC9742c242936569b815946ae38ab4df056b83944a&line=43&lineEnd=43&lineStartColumn=10&lineEndColumn=15&lineStyle=plain&_a=contents", linkMaker.permalink)
+    }
+
+    @Test
+    fun testAzureDevopsMultiLinePartialWidthSelection() {
+        val repoUrl = "https://dev.azure.com/organization/project/_git/repository"
+        val repoRoot = "/home/user/azureproject"
+        val filePath = "/home/user/azureproject/src/ProcessDtoQueueTrigger.cs"
+        val logicalStartPosition = LogicalPosition(42, 16)
+        val logicalEndPosition = LogicalPosition(44, 8)
+        val revision = "9742c242936569b815946ae38ab4df056b83944a"
+        val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, revision = revision)
+        assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FProcessDtoQueueTrigger.cs&version=GC9742c242936569b815946ae38ab4df056b83944a&line=43&lineEnd=45&lineStartColumn=17&lineEndColumn=9&lineStyle=plain&_a=contents", linkMaker.permalink)
     }
 }

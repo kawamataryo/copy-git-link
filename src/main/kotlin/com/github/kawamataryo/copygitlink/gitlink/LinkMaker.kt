@@ -72,7 +72,31 @@ class LinkMaker(
         // Encode branch name if it contains slashes
         val encodedRef = ref.replace("/", "%2F")
 
-        return "https://dev.azure.com/$organization/$project/_git/$repository?path=$encodedPath&version=$versionPrefix$encodedRef&_a=contents"
+        // Calculate line information for Azure DevOps format
+        val startLine = logicalStartPosition.line + 1 // Convert to 1-based
+
+        // Check if this is a zero-length selection (caret at same position)
+        val isZeroLengthSelection = logicalStartPosition.line == logicalEndPosition.line &&
+                                   logicalStartPosition.column == logicalEndPosition.column
+
+        // For Azure DevOps, we need to handle different cases:
+        // 1. Zero-length selection: select the entire line (start to start+1)
+        // 2. Multi-line selection with end column 0: we need to add 1 to match expected format
+        // 3. Normal selection: just add 1 to convert to 1-based
+        val endLine = when {
+            isZeroLengthSelection -> startLine + 1 // For zero-length selection, select entire line
+            logicalEndPosition.column == 0 && logicalStartPosition.line != logicalEndPosition.line ->
+                logicalEndPosition.line + 1 // Add 1 for multi-line selections ending at column 0
+            else -> logicalEndPosition.line + 1 // Normal case, just add 1 to convert to 1-based
+        }
+
+        // Azure DevOps uses 1-based column numbers
+        // For zero-length selections, we want to select the entire line (column 1 to column 1)
+        val startColumn = if (isZeroLengthSelection) 1 else logicalStartPosition.column + 1
+        val endColumn = if (isZeroLengthSelection) 1 else logicalEndPosition.column + 1
+
+        // Build the URL with line range information
+        return "https://dev.azure.com/$organization/$project/_git/$repository?path=$encodedPath&version=$versionPrefix$encodedRef&line=$startLine&lineEnd=$endLine&lineStartColumn=$startColumn&lineEndColumn=$endColumn&lineStyle=plain&_a=contents"
     }
 
     private fun makeStandardUrl(ref: String): String {
