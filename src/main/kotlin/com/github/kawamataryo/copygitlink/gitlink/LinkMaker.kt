@@ -69,8 +69,15 @@ class LinkMaker(
             "GC"
         }
 
+        // Process the ref to remove refs/heads/ prefix if present
+        val processedRef = if (ref.startsWith("refs/heads/")) {
+            ref.removePrefix("refs/heads/")
+        } else {
+            ref
+        }
+
         // Encode branch name if it contains slashes
-        val encodedRef = ref.replace("/", "%2F")
+        val encodedRef = processedRef.replace("/", "%2F")
 
         // Calculate line information for Azure DevOps format
         val startLine = logicalStartPosition.line + 1 // Convert to 1-based

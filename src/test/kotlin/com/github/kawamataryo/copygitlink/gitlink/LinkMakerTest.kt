@@ -127,7 +127,7 @@ class LinkMakerTest {
         val filePath = "/home/user/azureproject/src/AzureMain.kt"
         val logicalStartPosition = LogicalPosition(7, 0)
         val logicalEndPosition = LogicalPosition(7, 0)
-        val branch = "feature/new-feature"
+        val branch = "refs/heads/feature/new-feature"
         val linkMaker = LinkMaker(repoUrl, repoRoot, filePath, logicalStartPosition, logicalEndPosition, branch = branch)
         assertEquals("https://dev.azure.com/organization/project/_git/repository?path=%2Fsrc%2FAzureMain.kt&version=GBfeature%2Fnew-feature&line=8&lineEnd=9&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents", linkMaker.branchLink)
     }
